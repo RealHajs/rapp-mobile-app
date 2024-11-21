@@ -1,0 +1,17 @@
+npm install styled-components [stylovani]
+expo install expo-font [fonty pro expo]
+npx expo install lottie-react-native [knihovna pro animace]
+npm install @react-navigation/native
+npm install @react-navigation/stack
+
+ANIMACE
+https://lottiefiles.com/
+https://www.npmjs.com/package/react-native-animatable/v/0.4.1
+https://docs.swmansion.com/react-native-reanimated/
+
+FUNKCE
+react-native-background-geolocation
+react-native-sensors || react-native-altimeter
+
+DATABASE
+npm install @react-native-firebase/app @react-native-firebase/firestore

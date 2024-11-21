@@ -1,0 +1,10 @@
+START APP + DATABASE
+-------------------------
+cd desktop/rapp
+npx expo start
+expo start
+
+INFO K START DATABASE
+----------------------
+Pokud nejede database, tak overit API + URL
+RLS musi byt VYPNUTE !!!, protoze nebude moct kazdy inport data
