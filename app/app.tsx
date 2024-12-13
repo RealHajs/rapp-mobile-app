@@ -5,6 +5,8 @@ import Aktivity from './(tabs)/aktivity';
 import Zaznamy from './(tabs)/zaznamy';
 import Nastaveni from './(tabs)/nastaveni';
 import Registrace from "./pages/registrace";
+import React from 'react';
+
 
 
 type RootStackParamList = {

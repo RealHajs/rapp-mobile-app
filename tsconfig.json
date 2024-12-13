@@ -4,17 +4,28 @@
     "strict": true,
     "allowJs": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+      "@/*": ["./*"]
+    },
+    "skipLibCheck": true,  // Zrychlí kontrolu knihoven, pokud je problém s typy
+    "resolveJsonModule": true,  // Pokud pracuješ s JSON soubory
+    "jsx": "react",  // Specifikuj JSX režim pro React Native
+    "typeRoots": ["node_modules/@types"],  // Cesta k typovým definicím
+    "types": [
+      "istanbul-lib-coverage",
+      "istanbul-lib-report",
+      "istanbul-reports",
+      "phoenix",
+      "prop-types",
+      "ws"
+    ]  // Zahrnout konkrétní typy knihoven
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "**/*.js",       // Zahrnutí JavaScriptových souborů
+    "**/*.js",
     "**/*.jsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+  ],
+  "exclude": ["node_modules", "dist"]  // Vyloučí build složky
 }
