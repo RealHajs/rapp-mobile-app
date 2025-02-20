@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import React from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
