@@ -49,8 +49,7 @@ export default function Aktivity() {
 
   return (
     <View style={styles.container}>
-      <Text>Aktuální rychlost: {speedInKmh} km/h</Text>
-      <Text>Aktuální nadmořská výška: {altitudeInMeters} m</Text> {/* Zobrazení nadmořské výšky */}
+      
 
       <MapView
         style={styles.map} // Nastavení stylu mapy
@@ -70,6 +69,11 @@ export default function Aktivity() {
           description={`Aktuální rychlost: ${speedInKmh} km/h\nAktuální nadmořská výška: ${altitudeInMeters} m`}
         />
       </MapView>
+
+      <Text>Aktuální rychlost: {speedInKmh} km/h</Text>
+      <Text>Aktuální nadmořská výška: {altitudeInMeters} m</Text> {/* Zobrazení nadmořské výšky */}
+
+      
     </View>
   );
 }
@@ -82,6 +86,8 @@ const styles = StyleSheet.create({
   },
   map: {
     width: '100%',
-    height: '80%',
+    height: '50%',
+    position: "relative",
+    marginTop: "20%",
   },
 });
