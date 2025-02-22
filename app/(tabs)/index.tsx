@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, ImageBackground, StyleSheet, TouchableOpacity, View, Button } from 'react-native';
+import { Text, ImageBackground, StyleSheet, TouchableOpacity, View, Button, Image } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 import LottieView from 'lottie-react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -61,150 +61,119 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
   return (
     <ImageBackground style={styles.background}>
       <ThemedView>
-        <Text style={styles.hlavnitext}>Make Your Body</Text>
-        <Text style={styles.hlavnitext2}>Healthy & Fit</Text>
-        <Text style={styles.druhytext}>Not everyone can wake up every day feeling energized and motivated.</Text>
+        <Text style={styles.hlavnitext}>Sprintify</Text>
+        <Text style={styles.hlavnitext2}>Chase your dreams with every step</Text>
+
+        <View>
+          <Image source={require('../../assets/images/bezci.png')} style={styles.obrazekhomepage1} />
+        </View>
+
 
       <TouchableOpacity style={styles.hlavnibutton}>
         <Link href="../pages/registrace">
-          <ThemedText style={styles.hlavnibuttontext} type="link">Create an account</ThemedText>
+          <ThemedText style={styles.hlavnibuttontext} type="link">Start Running</ThemedText>
         </Link>
       </TouchableOpacity>
 
 
-        {/* <TouchableOpacity style={styles.hlavnibutton} onPress={() => navigation.navigate("Registrace")}>
-          <Text style={styles.hlavnibuttontext}>Create an account</Text>
-        </TouchableOpacity> */}
 
-        <TouchableOpacity style={styles.hlavnibutton2} onPress={() => navigation.navigate('Zaznamy')}>
-          <Text style={styles.hlavnibuttontext2}>Continue with FaceBook</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.mateucet}>Máte už vytvořený účet ? <Text style={styles.prihlasitse}> Přihlásit se</Text></Text>
-
-        <Text style={styles.infooapp}>By proceeding, you acknowledge and consent to the collection, processing, and usage of your personal data as outlined in our 
-          <Text style={styles.privacypolicy}>        Privacy Policy.</Text>
-        </Text>
       </ThemedView>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+
+
+
   preloadAnimacaContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
   },
+
+
   preloadAnimace: {
     width: 200,
     height: 200,
   },
+
+
   background: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     opacity: 0.9,
-    backgroundColor: "#0B0B0B",
+    backgroundColor: "whitesmoke",
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
   },
+
+
   hlavnitext: {
-    fontSize: 45,
-    color: '#FA4032',
-    position: "absolute",
-    top: -240,
-    fontWeight: "600",
-    fontFamily: 'RubikWetPaint-Regular',
-    alignSelf: 'center',
-    textAlign: "center",
-  },
-  hlavnitext2: {
     fontSize: 40,
-    color: '#00FFCC',
+    color: 'black',
     position: "absolute",
-    top: -185,
+    top: -250,
+    left: -170,
     fontWeight: "600",
     fontFamily: 'RubikWetPaint-Regular',
-    alignSelf: 'center',
-    textAlign: "center",
+    textAlign: "left",
   },
-  druhytext: {
+
+
+
+  hlavnitext2: {
     fontSize: 15,
-    color: 'white',
+    color: 'black',
     position: "absolute",
-    top: -120,
-    fontWeight: "300",
+    top: -200,
+    left: -170,
+    fontWeight: "500",
     fontFamily: 'RubikWetPaint-Regular',
-    alignSelf: 'center',
-    textAlign: "center",
-    marginHorizontal: 23,
+    textAlign: "left",
   },
+
+
+  obrazekhomepage1:{
+    padding: 10,
+    borderRadius: 20,
+    width: 300,
+    height: 300,
+    alignSelf: 'center',
+    position: "absolute",
+    top: -135,
+    justifyContent: 'center', 
+  },
+
+
   hlavnibutton: {
-    backgroundColor: '#FA4032',
+    backgroundColor: '#ff4200',
     padding: 10,
     borderRadius: 20,
     alignItems: 'center',
     width: 300,
-    height: 70,
+    height: 60,
     alignSelf: 'center',
     position: "absolute",
-    top: 80,
+    top: 240,
     justifyContent: 'center', 
   },
+
+
   hlavnibuttontext: {
     color: '#FEF3E2',
     fontSize: 20,
     textAlign: "center",
     fontWeight: "500",
   },
-  hlavnibutton2: {
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 20,
-    alignItems: 'center',
-    width: 300,
-    height: 70,
-    alignSelf: 'center',
-    position: "absolute",
-    top: 170,
-    borderWidth: 2 ,
-    borderColor: '#2F58CD',
-  },
-  hlavnibuttontext2: {
-    color: '#4267B2',
-    fontSize: 16,
-    textAlign: "center",
-    fontWeight: "500",
-    top: 13,
-  },
-  mateucet: {
-    fontSize: 10,
-    color: 'white',
-    position: "absolute",
-    top: 260,
-    fontFamily: 'RubikWetPaint-Regular',
-    alignSelf: 'center',
-    textAlign: "center",
-    marginHorizontal: 23,
-  },
-  prihlasitse: {
-    color: '#FA4032',
-  },
-  infooapp: {
-    fontSize: 10,
-    color: 'white',
-    position: "absolute",
-    top: 335,
-    fontFamily: 'RubikWetPaint-Regular',
-    alignSelf: 'center',
-    textAlign: "center",
-    marginHorizontal: 30,
-    lineHeight: 15,
-  },
-  privacypolicy: {
-    color: '#FA4032',
-  },
+
+
+
+
+
+
+ 
 
 });
