@@ -71,7 +71,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 
       <TouchableOpacity style={styles.hlavnibutton}>
         <Link href="../pages/registrace">
-          <ThemedText style={styles.hlavnibuttontext} type="link">Start Running</ThemedText>
+          <ThemedText style={styles.hlavnibuttontext} type="link">Get Started</ThemedText>
         </Link>
       </TouchableOpacity>
 

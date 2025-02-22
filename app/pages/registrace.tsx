@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, ImageBackground, Button, StyleSheet, TouchableOpacity, } from 'react-native';
+import { View, Text, TextInput, ImageBackground, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import supabase from '../../supabaseClient';
 
 import { Link } from 'expo-router';
@@ -55,17 +55,19 @@ export default function Registrace() {
     <View style={styles.container}>
 
       <TouchableOpacity style={styles.buttonBackText}>
-        <Link href="../(tabs)/aktivity">
+        <Link href="../(tabs)/Home">
           <ThemedText style={styles.buttonBackText} type="link">v</ThemedText>
         </Link>
       </TouchableOpacity>
 
-      
-      <Text style={styles.nazevStranky}>Create an account</Text>
 
-      <Text style={styles.nazevStranky2}>By proceeding, you acknowledge and consent to the processing our
-        <Text style={styles.cervenabarva}> Privacy Policy.</Text>
-      </Text>
+      <View>
+        <Image source={require('../../assets/images/bezci.png')} style={styles.obrazekRegistrace} />
+      </View>
+
+      
+      <ThemedText style={styles.buttonTextRegistrace}>Create An Account</ThemedText>
+
 
 
       <TextInput
@@ -101,14 +103,10 @@ export default function Registrace() {
       {error && <Text style={styles.error}>{error}</Text>}
 
       <TouchableOpacity style={styles.buttonUprava} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Create an account</Text>
+        <Text style={styles.buttonText}>Sign Up Free</Text>
       </TouchableOpacity>
 
-      {/* <Button title="Odeslat" onPress={handleSubmit} /> */}
 
-
-      <Text style={styles.textPrivacyPolicy}>By proceeding, you acknowledge and consent to the collection, processing, and usage of your personal data as outlined in our</Text>
-      <Text style={styles.textPrivacyPolicy2}> Privacy Policy.</Text>
 
 
 
@@ -133,12 +131,26 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 
+
+  obrazekRegistrace:{
+    padding: 10,
+    borderRadius: 20,
+    width: 200,
+    height: 200,
+    alignSelf: 'center',
+    position: "absolute",
+    top: -150,
+    justifyContent: 'center',
+    zIndex: 1,
+  },
+
+
   background: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     opacity: 0.9,
-    backgroundColor: "#0B0B0B",
+    backgroundColor: "whitesmoke",
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
   },
@@ -151,14 +163,6 @@ const styles = StyleSheet.create({
     left: -15,
   },
 
-  nazevStranky2: {
-    fontSize: 12,
-    fontWeight: 'normal',
-    color: "white",
-    top: -113,
-    left: 15,
-    marginRight: 100,
-  },
 
   cervenabarva:{
     color: "#FA4032",
@@ -171,11 +175,10 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: "#B63F36",
-    top: -60,
-  },
-
- 
+    backgroundColor: "#cc0000",
+    top: 100,
+    color: "white",
+  }, 
 
 
   inputSecond: {
@@ -184,8 +187,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: "#B63F36",
-    top: -20,
+    backgroundColor: "#cc0000",
+    top: 115,
+    color: "white",
   },
 
 
@@ -195,8 +199,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: "#B63F36",
-    top: 20,
+    backgroundColor: "#cc0000",
+    top: 130,
+    color: "white",
   },
 
   error: {
@@ -213,8 +218,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#FA4032",
     justifyContent: 'center',
     alignItems: 'center',
-    top: 160,
+    top: 210,
   },
+
 
   buttonText: {
     color: 'white',
@@ -224,30 +230,26 @@ const styles = StyleSheet.create({
   },
 
 
-  textPrivacyPolicy: {
-    fontSize: 10,
-    fontWeight: 'normal',
-    color: "white",
-    top: 202,
-    textAlign: "center",
-  },
-
-  textPrivacyPolicy2: {
-    fontSize: 10,
-    fontWeight: 'normal',
-    color: "#FA4032",
-    top: 203,
-    textAlign: "center",
-  },
-
   buttonBackText: {
-    fontSize: 40,
+    fontSize: 25,
     fontWeight: 'normal',
-    color: "white",
+    color: "black",
     top: 70,
     position: "absolute",
     transform: [{ rotate: '90deg' }],
     left: 37,
+  },
+
+
+  buttonTextRegistrace: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'normal',
+    textAlign: 'center',
+    top: 80,
+    zIndex: 2,
+    height: 100,
+    paddingTop: 20,
   },
 
 
