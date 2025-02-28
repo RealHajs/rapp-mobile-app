@@ -55,7 +55,7 @@ export default function Registrace() {
     <View style={styles.container}>
 
       <TouchableOpacity style={styles.buttonBackText}>
-        <Link href="../(tabs)/Home">
+        <Link href="/">
           <ThemedText style={styles.buttonBackText} type="link">v</ThemedText>
         </Link>
       </TouchableOpacity>
