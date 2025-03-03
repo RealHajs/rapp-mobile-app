@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, ImageBackground, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { Link, useRouter } from 'expo-router';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import { Link, useRouter } from 'expo-router'; 
 import supabase from '../../supabaseClient';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 export default function Login() {
   const [error, setError] = useState('');
@@ -13,7 +10,17 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = async () => {
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await AsyncStorage.getItem('userToken');
+      if (session) {
+        router.push('../pages/home'); 
+      }
+    };
+    checkSession();
+  }, []);
+
+  const handleSubmit = async () => {
     if (!email || !password) {
       setError('Please fill in both fields');
       return;
@@ -26,69 +33,57 @@ export default function Login() {
       });
 
       if (error) {
-        throw error;
+        setError('Invalid email or password');
+        return;
       }
 
-      // Store user session or token
       await AsyncStorage.setItem('userToken', data.session.access_token);
-
-      // Navigate to the home page after successful login
-      // router.push('/home');
-
-      // <Link href="/home">
-      //   <ThemedText style={styles.buttonBackText} type="link">v</ThemedText>
-      // </Link>
-
+      router.push('../pages/home');
+      
       alert('Successfully logged in!');
       setEmail('');
       setPassword('');
       setError('');
     } catch (error) {
-      console.error(error);
-      setError('There was an issue with your login');
+      setError('An error occurred during login');
     }
   };
 
   return (
     <ImageBackground style={styles.background}>
       <View style={styles.container}>
-
-        <TouchableOpacity style={styles.buttonBackText}>
-          <Link href="/">
-            <ThemedText style={styles.buttonBackText} type="link">Back</ThemedText>
-          </Link>
-        </TouchableOpacity>
-
-        <View>
-          <Image source={require('../../assets/images/bezci.png')} style={styles.obrazekRegistrace} />
-        </View>
-
-        <ThemedText style={styles.buttonTextRegistrace}>Log In</ThemedText>
+        <Text style={styles.hlavnitext}>SPRINT<Text style={styles.hlavnitextSecond}>IFY</Text></Text>
+        <Text style={styles.hlavnitext2}>Chase your dreams with every step</Text>
 
         <TextInput
           style={styles.inputMain}
           value={email}
           onChangeText={setEmail}
-          placeholder="Enter your e-mail"
-          placeholderTextColor="white"
+          placeholder="email@example.com"
+          placeholderTextColor="#646464"
           keyboardType="email-address"
         />
-
         <TextInput
           style={styles.inputSecond}
           value={password}
           onChangeText={setPassword}
-          placeholder="Enter your password"
-          placeholderTextColor="white"
+          placeholder="password"
+          placeholderTextColor="#646464"
           secureTextEntry={true}
         />
 
         {error && <Text style={styles.error}>{error}</Text>}
 
-        <TouchableOpacity style={styles.buttonUprava} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Log In</Text>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>LOG-IN</Text>
         </TouchableOpacity>
 
+        <Text style={styles.loginTextPodButtonem}>
+          Don't you have an account yet? |
+          <Link href="../pages/registrace">
+            <Text style={styles.loginTextPodButtonem2}>Registration</Text>
+          </Link>
+        </Text>
       </View>
     </ImageBackground>
   );
@@ -101,59 +96,71 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  obrazekRegistrace: {
-    padding: 10,
-    borderRadius: 20,
-    width: 200,
-    height: 200,
-    alignSelf: 'center',
-    position: "absolute",
-    top: -150,
-    justifyContent: 'center',
-    zIndex: 1,
+  hlavnitext: {
+    fontSize: 40,
+    color: '#FF4200',
+    position: 'absolute',
+    top: 135,
+    left: 20,
+    fontWeight: '600',
+    fontFamily: 'RubikWetPaint-Regular',
+    textAlign: 'left',
+  },
+  hlavnitextSecond: {
+    color: 'black',
+  },
+  hlavnitext2: {
+    fontSize: 15,
+    color: 'black',
+    position: 'absolute',
+    top: 185,
+    left: 20,
+    fontWeight: '400',
+    fontFamily: 'RubikWetPaint-Regular',
+    textAlign: 'left',
   },
   background: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     opacity: 0.9,
-    backgroundColor: "whitesmoke",
+    backgroundColor: 'whitesmoke',
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
   },
   inputMain: {
-    width: 345,
+    width: 300,
     height: 60,
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: "#cc0000",
-    top: 100,
-    color: "white",
+    backgroundColor: '#E9E9E9',
+    top: 50,
+    textAlign: 'center',
   },
   inputSecond: {
-    width: 345,
+    width: 300,
     height: 60,
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: "#cc0000",
-    top: 115,
-    color: "white",
+    backgroundColor: '#E9E9E9',
+    top: 70,
+    textAlign: 'center',
   },
   error: {
-    color: "white",
-    top: 80,
-    fontSize: 30,
+    color: 'red',
+    top: 120,
+    fontSize: 15,
   },
-  buttonUprava: {
-    width: 345,
+  button: {
+    width: 300,
     height: 60,
     borderRadius: 10,
-    backgroundColor: "#FA4032",
+    backgroundColor: '#FA4032',
     justifyContent: 'center',
     alignItems: 'center',
-    top: 210,
+    top: 160,
   },
   buttonText: {
     color: 'white',
@@ -161,23 +168,18 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     textAlign: 'center',
   },
-  buttonBackText: {
-    fontSize: 25,
-    fontWeight: 'normal',
-    color: "black",
-    top: 70,
-    position: "absolute",
-    transform: [{ rotate: '90deg' }],
-    left: 37,
-  },
-  buttonTextRegistrace: {
+  loginTextPodButtonem: {
+    fontSize: 12,
     color: 'black',
-    fontSize: 30,
-    fontWeight: 'normal',
-    textAlign: 'center',
-    top: 80,
-    zIndex: 2,
-    height: 100,
-    paddingTop: 20,
+    position: 'absolute',
+    top: 740,
+    fontWeight: '300',
+    fontFamily: 'RubikWetPaint-Regular',
+    alignSelf: 'center',
+  },
+  loginTextPodButtonem2: {
+    color: '#FF4200',
+    textDecorationLine: 'underline',
+    textDecorationColor: '#FF4200',
   },
 });

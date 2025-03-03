@@ -61,7 +61,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
   return (
     <ImageBackground style={styles.background}>
       <ThemedView>
-        <Text style={styles.hlavnitext}>Sprintify</Text>
+        <Text style={styles.hlavnitext}>SPRINT<Text style={styles.hlavnitextSecond}>IFY</Text></Text>
+        
         <Text style={styles.hlavnitext2}>Chase your dreams with every step</Text>
 
         <View>
@@ -71,9 +72,15 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 
       <TouchableOpacity style={styles.hlavnibutton}>
         <Link href="../pages/registrace">
-          <ThemedText style={styles.hlavnibuttontext} type="link">Get Started</ThemedText>
+          <ThemedText style={styles.hlavnibuttontext} type="link">GET STARTED</ThemedText>
         </Link>
       </TouchableOpacity>
+
+        <Text style={styles.loginTextPodButtonem}>Do you have an account yet? |
+          <Link href="../pages/login">
+            <Text style={styles.loginTextPodButtonem2}>log-in</Text>
+          </Link>
+        </Text>
 
 
 
@@ -113,15 +120,19 @@ const styles = StyleSheet.create({
 
   hlavnitext: {
     fontSize: 40,
-    color: 'black',
+    color: '#FF4200',
     position: "absolute",
     top: -250,
-    left: -170,
+    left: -150,
     fontWeight: "600",
     fontFamily: 'RubikWetPaint-Regular',
     textAlign: "left",
   },
 
+
+  hlavnitextSecond: {
+    color: 'black',
+  },
 
 
   hlavnitext2: {
@@ -129,8 +140,8 @@ const styles = StyleSheet.create({
     color: 'black',
     position: "absolute",
     top: -200,
-    left: -170,
-    fontWeight: "500",
+    left: -150,
+    fontWeight: "400",
     fontFamily: 'RubikWetPaint-Regular',
     textAlign: "left",
   },
@@ -153,11 +164,11 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     alignItems: 'center',
-    width: 300,
+    width: 240,
     height: 60,
     alignSelf: 'center',
     position: "absolute",
-    top: 240,
+    top: 230,
     justifyContent: 'center', 
   },
 
@@ -170,7 +181,24 @@ const styles = StyleSheet.create({
   },
 
 
+  loginTextPodButtonem:{
+    fontSize: 12,
+    color: 'black',
+    position: "absolute",
+    top: 305,
+    fontWeight: "300",
+    fontFamily: 'RubikWetPaint-Regular',
 
+    alignSelf: 'center',
+  },
+
+
+
+  loginTextPodButtonem2: {
+    color: '#FF4200',
+    textDecorationLine: 'underline',
+    textDecorationColor: '#FF4200',
+  }
 
 
 
