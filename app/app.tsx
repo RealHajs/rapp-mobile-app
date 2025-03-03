@@ -5,6 +5,7 @@ import Aktivity from './(tabs)/aktivity';
 import Zaznamy from './(tabs)/zaznamy';
 import Nastaveni from './(tabs)/nastaveni';
 import Registrace from "./pages/registrace";
+import Login from "./pages/registrace";
 import React from 'react';
 
 
@@ -15,6 +16,7 @@ type RootStackParamList = {
   Zaznamy: undefined;
   Nastaveni: undefined;
   Registrace: undefined;
+  Login: undefined;
 };
 
 // const Stack = createStackNavigator<RootStackParamList>();
@@ -30,6 +32,7 @@ export default function App() {
         <Stack.Screen name="Zaznamy" component={Zaznamy} />
         <Stack.Screen name="Nastaveni" component={Nastaveni} />
         <Stack.Screen name="Registrace" component={Registrace} />
+        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );
