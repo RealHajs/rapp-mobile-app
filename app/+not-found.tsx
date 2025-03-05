@@ -10,9 +10,9 @@ export default function NotFoundScreen() {
     <>
       <Stack.Screen options={{ title: 'Toto je error page!' }} />
       <ThemedView style={styles.container}>
-        <ThemedText type="title">Tato stránka neexistuje [404]</ThemedText>
+        <ThemedText type="title">The page is not found ! [404]</ThemedText>
         <Link href="/" style={styles.link}>
-          <ThemedText type="link">Jít zpět</ThemedText>
+          <ThemedText type="link">Go back</ThemedText>
         </Link>
       </ThemedView>
     </>
