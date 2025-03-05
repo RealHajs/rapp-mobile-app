@@ -125,12 +125,12 @@ export default function Aktivity() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#000', padding: 0 },
+  container: { flex: 1, backgroundColor: 'white', padding: 0 },
   map: { width: '100%', height: '65%', borderRadius: 15, overflow: 'hidden' },
   statsRow: { flexDirection: 'row', justifyContent: 'space-around', marginVertical: 10 },
-  statBox: { flex: 1, backgroundColor: '#1e1e1e', borderRadius: 15, padding: 15, marginHorizontal: 5, alignItems: 'center' },
-  statTitle: { color: '#bbb', fontSize: 14, fontWeight: 'bold' },
-  stat: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
+  statBox: { flex: 1, borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, marginHorizontal: 5, alignItems: 'center' },
+  statTitle: { color: 'black', fontSize: 14, fontWeight: 'bold' },
+  stat: { color: 'black', fontSize: 18, fontWeight: 'bold' },
   buttonsContainer: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 },
   button: { paddingVertical: 15, paddingHorizontal: 50, borderRadius: 20, alignItems: 'center' },
   startButton: { backgroundColor: 'green' },

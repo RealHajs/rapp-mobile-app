@@ -14,7 +14,7 @@ export default function Login() {
     const checkSession = async () => {
       const session = await AsyncStorage.getItem('userToken');
       if (session) {
-        router.push('../pages/home'); 
+        router.push('../(tabs)/aktivity'); 
       }
     };
     checkSession();
