@@ -3,14 +3,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
 //tabs
-import HomeScreen from './(tabs)/index';
+import HomeScreen from './(tabs)/HomeScreen';
 import Aktivity from './(tabs)/aktivity';
 import Zaznamy from './(tabs)/zaznamy';
 import Nastaveni from './(tabs)/nastaveni';
 
 //pages
-import Registrace from "./pages/Login/registrace";
-import Login from "./pages/Login/login";
+import Registrace from "./pages/unLogin/registrace";
+import Login from "./pages/unLogin/login";
 import WelcomePage from "./pages/unLogin/welcomePage";
 
 
@@ -26,6 +26,7 @@ type RootStackParamList = {
   Registrace: undefined;
   Login: undefined;
   WelcomePage: undefined;
+
 };
 
 const Stack = createStackNavigator();
@@ -46,6 +47,7 @@ export default function App() {
         <Stack.Screen name="Registrace" component={Registrace} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="WelcomePage" component={WelcomePage} />
+
 
       </Stack.Navigator>
     </NavigationContainer>

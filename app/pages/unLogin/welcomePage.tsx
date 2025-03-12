@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { supabase } from '../../../supabaseClient';
 import { ThemedText } from '@/components/ThemedText';
 import { Link, useRouter } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type RootStackParamList = {
   Home: undefined;
@@ -45,7 +45,7 @@ export default function WelcomePage({ navigation }: HomeScreenProps) {
     return (
       <View style={styles.preloadAnimacaContainer}>
         <LottieView
-          source={require('../../assets/animations/cat-animation.json')}
+          source={require('../../../assets/animations/cat-animation.json')}
           autoPlay
           loop={true}
           speed={1}
@@ -62,18 +62,18 @@ export default function WelcomePage({ navigation }: HomeScreenProps) {
         <Text style={styles.hlavnitext2}>Chase your dreams with every step</Text>
 
         <View>
-          <Image source={require('../../assets/images/bezci.png')} style={styles.obrazekhomepage1} />
+          <Image source={require('../../../assets/images/bezci.png')} style={styles.obrazekhomepage1} />
         </View>
 
         <TouchableOpacity style={styles.hlavnibutton}>
-          <Link href="../pages/registrace">
+          <Link href="./registrace">
             <ThemedText style={styles.hlavnibuttontext} type="link">GET STARTED</ThemedText>
           </Link>
         </TouchableOpacity>
 
         <Text style={styles.loginTextPodButtonem}>
           Do you have an account yet? |
-          <Link href="../pages/login">
+          <Link href="./login">
             <Text style={styles.loginTextPodButtonem2}>log-in</Text>
           </Link>
         </Text>
@@ -167,4 +167,5 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     textDecorationColor: '#FF4200',
   },
+  
 });

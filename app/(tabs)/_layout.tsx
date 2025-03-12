@@ -28,7 +28,7 @@ export default function TabLayout() {
 
     {/* home */}
     <Tabs.Screen
-        name="index"
+        name="HomeScreen"
         options={{
           title: 'Domů',
           tabBarIcon: ({ color, focused }) => (

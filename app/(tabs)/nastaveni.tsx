@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useRouter } from 'expo-router'; // Použití useRouter pro navigaci
-import AsyncStorage from '@react-native-async-storage/async-storage'; // AsyncStorage pro uložení tokenu
+import { useRouter } from 'expo-router';
+import { supabase } from '../../supabaseClient';
 
 export default function Nastaveni() {
   const router = useRouter();
@@ -9,13 +9,18 @@ export default function Nastaveni() {
   // Funkce pro odhlášení
   const handleLogout = async () => {
     try {
-      // Odstranění tokenu z AsyncStorage
-      await AsyncStorage.removeItem('userToken');
-      // Přesměrování na stránku home
-      router.replace('../pages/welcomePage'); // nebo použij správnou cestu pro home page
+      // Odhlášení přes Supabase
+      await supabase.auth.signOut();
+      // Přesměrování na IndexPage (který ověří přihlášení)
+      router.replace('../index');
     } catch (error) {
-      console.error('Error during logout:', error);
+      console.error('Chyba při odhlášení:', error);
     }
+  };
+
+  // Funkce pro login (pouze přesměrování na IndexPage, kde se ověří login stav)
+  const handleLogin = () => {
+    router.replace('../index'); // IndexPage zjistí, zda je login, a přesměruje dál
   };
 
   return (
@@ -26,8 +31,9 @@ export default function Nastaveni() {
         <Text style={styles.logoutText}>Log Out</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-        <Text style={styles.logoutText}>Log In</Text>
+      {/* Tlačítko pro login */}
+      <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+        <Text style={styles.loginText}>Log In</Text>
       </TouchableOpacity>
 
     </View>
@@ -40,7 +46,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   logoutButton: {
     backgroundColor: '#FF4200',
     padding: 10,
@@ -48,6 +53,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logoutText: {
+    color: 'white',
+    fontSize: 18,
+  },
+  loginButton: {
+    backgroundColor: '#28a745',
+    padding: 10,
+    borderRadius: 10,
+  },
+  loginText: {
     color: 'white',
     fontSize: 18,
   },
