@@ -39,9 +39,9 @@ export default function Login() {
       </TouchableOpacity>
 
       <Text style={styles.loginTextPodButtonem}>
-         Do you have an account yet? |
-        <Link href="./login">
-          <Text style={styles.loginTextPodButtonem2}>log-in</Text>
+      Don't you have an account yet? |
+        <Link href="./registrace">
+          <Text style={styles.loginTextPodButtonem2}>Registration</Text>
         </Link>
       </Text>
 

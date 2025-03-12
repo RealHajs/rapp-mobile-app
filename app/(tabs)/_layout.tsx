@@ -9,6 +9,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import Feather from '@expo/vector-icons/Feather';
+import Entypo from '@expo/vector-icons/Entypo';
 
 
 export default function TabLayout() {
@@ -17,12 +18,32 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        // tabBarActiveTintColor: Colors[colorScheme ?? 'dark'].tint,
+
+        tabBarActiveTintColor: 'black',
+        tabBarInactiveTintColor: 'gray',
+
+
+
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#232323',
+          backgroundColor: 'white',
           padding: 8,
+          marginTop: -70,
+          width: 350,
+          alignSelf: "center",
+          borderRadius: 20,
+          height: 70,
+          borderWidth: 2,
+          borderColor: "black",
+          top: -30,
         },
+
+        tabBarLabelStyle: {
+          marginTop: 7,
+        },
+
+
       }}>
 
 
@@ -32,7 +53,7 @@ export default function TabLayout() {
         options={{
           title: 'Domů',
           tabBarIcon: ({ color, focused }) => (
-            <SimpleLineIcons name="home" size={24} color={color} />
+            <SimpleLineIcons name="home" size={24} top={5} color={"black"} />
           ),
         }}
       />
@@ -44,7 +65,7 @@ export default function TabLayout() {
         options={{
           title: 'Aktivity',
           tabBarIcon: ({ color, focused }) => (
-            <AntDesign name={focused ? 'linechart' : 'linechart'} size={20} color={color} />
+            <AntDesign name={focused ? 'linechart' : 'linechart'} size={20} top={5} color={"black"} />
           ),
         }}
       />
@@ -56,7 +77,7 @@ export default function TabLayout() {
         options={{
           title: 'Záznamy',
           tabBarIcon: ({ color, focused }) => (
-            <AntDesign name="book" size={24} color={color} />          
+            <AntDesign name="book" size={24} top={5} color={"black"} />          
           ),
         }}
       />
@@ -67,7 +88,7 @@ export default function TabLayout() {
         options={{
           title: 'Nastavení',
           tabBarIcon: ({ color, focused }) => (
-            <Feather name="settings" size={24} color={color} />          
+            <Entypo name="menu" size={30} top={5} color={"black"} />          
           ),
         }}
       />

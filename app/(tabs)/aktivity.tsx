@@ -96,19 +96,24 @@ export default function Aktivity() {
 
   return (
     <View style={styles.container}>
+
+    <Text style={styles.nahoreVelky}>Running at 
+      <Text style={styles.nahoreVelky2}> Digulis Park</Text>
+    </Text>
+
+    <Text style={styles.nahoreMalyPodVelkym}>Tuesday 10th - 6:18 PM</Text>
+
+
+
       <MapView style={styles.map}>
         {locations.length > 0 && <Polyline coordinates={locations} strokeWidth={4} strokeColor='purple' />}
         {location && <Marker coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }} title='Tvoje poloha' />}
       </MapView>
 
-      <View style={styles.statsRow}>
-        <View style={styles.statBox}><Text style={styles.statTitle}>Čas</Text><Text style={styles.stat}>{elapsedTime} s</Text></View>
-        <View style={styles.statBox}><Text style={styles.statTitle}>Vzdálenost</Text><Text style={styles.stat}>{distance.toFixed(2)} m</Text></View>
-      </View>
-      <View style={styles.statsRow}>
-        <View style={styles.statBox}><Text style={styles.statTitle}>Průměrná rychlost</Text><Text style={styles.stat}>{averageSpeed.toFixed(2)} km/h</Text></View>
-        <View style={styles.statBox}><Text style={styles.statTitle}>Nadmořská výška</Text><Text style={styles.stat}>{altitude.toFixed(2)} m</Text></View>
-      </View>
+      <View style={styles.statBox}><Text style={styles.statTitle}>Čas</Text><Text style={styles.stat}>{elapsedTime} s</Text></View>
+      <View style={styles.statBox2}><Text style={styles.statTitle}>Vzdálenost</Text><Text style={styles.stat}>{distance.toFixed(2)} m</Text></View>
+      <View style={styles.statBox3}><Text style={styles.statTitle}>Průměrná rychlost</Text><Text style={styles.stat}>{averageSpeed.toFixed(2)} km/h</Text></View>
+      <View style={styles.statBox4}><Text style={styles.statTitle}>Nadmořská výška</Text><Text style={styles.stat}>{altitude.toFixed(2)} m</Text></View>
 
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={[styles.button, isRunning ? styles.stopButton : styles.startButton]} onPress={isRunning ? stopRun : startRun}>
@@ -126,16 +131,25 @@ export default function Aktivity() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'white', padding: 0 },
-  map: { width: '100%', height: '65%', borderRadius: 15, overflow: 'hidden' },
-  statsRow: { flexDirection: 'row', justifyContent: 'space-around', marginVertical: 10 },
-  statBox: { flex: 1, borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, marginHorizontal: 5, alignItems: 'center' },
+  map: { width: '95%', height: '75%', top: "22.5%", borderRadius: 40, overflow: 'hidden', alignSelf: "center", },
+
+  nahoreVelky: { top: "10%", alignSelf: "center", textAlign: "center", position: "absolute", fontSize: 25, fontWeight: 400 },
+  nahoreVelky2: { color: "#FF4200", },
+  nahoreMalyPodVelkym: { top: "14.5%", alignSelf: "center", textAlign: "center", position: "absolute", fontSize: 15, color: "gray", fontWeight: 200 },
+
+  statBox:  { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: 115, top: -110, left: "5%", height: 120, opacity: 0.7, },
+  statBox2: { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: 115, top: -230, left: "35%", height: 120, opacity: 0.7, },
+  statBox3: { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: 115, top: -350, left: "65%", height: 120, opacity: 0.7, },
+  statBox4: { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: "90%", top: -340, left: "5%", height: 80, opacity: 0.7, },
+
   statTitle: { color: 'black', fontSize: 14, fontWeight: 'bold' },
   stat: { color: 'black', fontSize: 18, fontWeight: 'bold' },
   buttonsContainer: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 },
   button: { paddingVertical: 15, paddingHorizontal: 50, borderRadius: 20, alignItems: 'center' },
-  startButton: { backgroundColor: 'green' },
-  stopButton: { backgroundColor: 'red' },
-  pauseButton: { backgroundColor: 'orange' },
-  unpauseButton: { backgroundColor: '#ffcc66' },
+  
+  startButton: { backgroundColor: 'green', top: -430, left: "22.5%", height: 60, width: 150, },
+  stopButton: { backgroundColor: 'red', top: -430, left: "22.5%", height: 60, width: 150, },
+  pauseButton: { backgroundColor: 'orange', top: -430, left: "22.5%", height: 60, width: 150, },
+  unpauseButton: { backgroundColor: '#ffcc66', top: -430, left: "22.5%", height: 60, width: 150, },
   buttonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
 });

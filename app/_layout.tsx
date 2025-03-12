@@ -5,6 +5,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
+
 
 
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -36,3 +38,24 @@ export default function RootLayout() {
       </ThemeProvider>
   );
 }
+
+
+
+
+const styles = StyleSheet.create({
+
+  tabBar: {
+    backgroundColor: '#FF4200',
+    height: 70,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    position: 'absolute',
+  },
+
+  tabLabel: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    paddingBottom: 5,
+  },
+
+});
