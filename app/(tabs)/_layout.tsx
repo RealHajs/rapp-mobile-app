@@ -51,7 +51,7 @@ export default function TabLayout() {
     <Tabs.Screen
         name="HomeScreen"
         options={{
-          title: 'Domů',
+          title: 'Home',
           tabBarIcon: ({ color, focused }) => (
             <SimpleLineIcons name="home" size={24} top={5} color={"black"} />
           ),
@@ -63,7 +63,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="aktivity"
         options={{
-          title: 'Aktivity',
+          title: 'Activities',
           tabBarIcon: ({ color, focused }) => (
             <AntDesign name={focused ? 'linechart' : 'linechart'} size={20} top={5} color={"black"} />
           ),
@@ -75,7 +75,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="zaznamy"
         options={{
-          title: 'Záznamy',
+          title: 'Datas',
           tabBarIcon: ({ color, focused }) => (
             <AntDesign name="book" size={24} top={5} color={"black"} />          
           ),
@@ -86,7 +86,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="nastaveni"
         options={{
-          title: 'Nastavení',
+          title: 'Settings',
           tabBarIcon: ({ color, focused }) => (
             <Entypo name="menu" size={30} top={5} color={"black"} />          
           ),
