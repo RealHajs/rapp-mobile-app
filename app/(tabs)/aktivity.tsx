@@ -4,6 +4,15 @@ import MapView, { Marker, Polyline } from 'react-native-maps';
 import * as Location from 'expo-location';
 import haversine from 'haversine-distance';
 
+// icons
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import Feather from '@expo/vector-icons/Feather';
+
 export default function Aktivity() {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [speed, setSpeed] = useState<number>(0);
@@ -19,6 +28,17 @@ export default function Aktivity() {
   const watchId = useRef<Location.LocationSubscription | null>(null);
   let prevLocation: { latitude: number; longitude: number } | null = null;
 
+  // ✅ Funkce na formátovaný čas
+  const formatElapsedTime = (milliseconds: number) => {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    const setiny = Math.floor((milliseconds % 1000) / 10);
+
+    const pad = (num: number) => num.toString().padStart(2, '0');
+    return `${pad(minutes)}:${pad(seconds)}:${pad(setiny)}`;
+  };
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -28,11 +48,12 @@ export default function Aktivity() {
     })();
   }, []);
 
+  // ✅ Čas v reálném čase
   useEffect(() => {
     if (isRunning && !isPaused && startTime) {
       const timer = setInterval(() => {
-        setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
-      }, 1000);
+        setElapsedTime(Date.now() - startTime);
+      }, 50);
       return () => clearInterval(timer);
     }
   }, [isRunning, isPaused, startTime]);
@@ -96,38 +117,60 @@ export default function Aktivity() {
 
   return (
     <View style={styles.container}>
-
-    <Text style={styles.nahoreVelky}>Running at 
-      <Text style={styles.nahoreVelky2}> Digulis Park</Text>
-    </Text>
-
-    <Text style={styles.nahoreMalyPodVelkym}>Tuesday 10th - 6:18 PM</Text>
-
-
+      <Text style={styles.nahoreVelky}>
+        Running at <Text style={styles.nahoreVelky2}>Digulis Park</Text>
+      </Text>
+      <Text style={styles.nahoreMalyPodVelkym}>Tuesday 10th - 6:18 PM</Text>
 
       <MapView style={styles.map}>
         {locations.length > 0 && <Polyline coordinates={locations} strokeWidth={4} strokeColor='purple' />}
         {location && <Marker coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }} title='Tvoje poloha' />}
       </MapView>
 
-      <View style={styles.statBox}><Text style={styles.statTitle}>Čas</Text><Text style={styles.stat}>{elapsedTime} s</Text></View>
-      <View style={styles.statBox2}><Text style={styles.statTitle}>Vzdálenost</Text><Text style={styles.stat}>{distance.toFixed(2)} m</Text></View>
-      <View style={styles.statBox3}><Text style={styles.statTitle}>Průměrná rychlost</Text><Text style={styles.stat}>{averageSpeed.toFixed(2)} km/h</Text></View>
-      <View style={styles.statBox4}><Text style={styles.statTitle}>Nadmořská výška</Text><Text style={styles.stat}>{altitude.toFixed(2)} m</Text></View>
+
+      {/* ikony a tabs */}
+      <View style={styles.statBox}>
+        <FontAwesome6 style={styles.statTitle} name="arrow-up-from-ground-water" color="#FF4200" />
+        <Text style={styles.stat}>{altitude.toFixed(2)}</Text>
+      </View>
+
+      <View style={styles.statBox2}>
+        <MaterialCommunityIcons style={styles.statTitle} name="map-marker-distance" color="#FF4200" />
+        <Text style={styles.stat}>{distance.toFixed(2)} m</Text>
+      </View>
+
+      <View style={styles.statBox3}>
+        <Ionicons style={styles.statTitle} name="speedometer" color="#FF4200" />
+        <Text style={styles.stat}>{averageSpeed.toFixed(2)} km</Text>
+      </View>
+
+      <View style={styles.statBox4}>
+        <Text style={styles.stat2}>{formatElapsedTime(elapsedTime)}</Text>
+      </View>
+
+      {/* konec ikony a tabs */}
+
 
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={[styles.button, isRunning ? styles.stopButton : styles.startButton]} onPress={isRunning ? stopRun : startRun}>
-          <Text style={styles.buttonText}>{isRunning ? 'Stop' : 'Start'}</Text>
+        <TouchableOpacity
+          style={[styles.button, isRunning ? styles.stopButton : styles.startButton]}
+          onPress={isRunning ? stopRun : startRun}
+        >
+          <View>{isRunning ? <FontAwesome5 name="stop-circle" size={40} color="#FF4200" /> : <AntDesign name="play" size={40} color="black" />}</View>
         </TouchableOpacity>
         {isRunning && (
-          <TouchableOpacity style={[styles.button, isPaused ? styles.unpauseButton : styles.pauseButton]} onPress={togglePause}>
-            <Text style={styles.buttonText}>{isPaused ? 'Unpause' : 'Pause'}</Text>
+          <TouchableOpacity
+            style={[styles.button, isPaused ? styles.unpauseButton : styles.pauseButton]}
+            onPress={togglePause}
+          >
+            <View>{isPaused ? <AntDesign name="play" size={40} color="green" /> : <Feather name="pause" size={40} color="black" />}</View>
           </TouchableOpacity>
         )}
       </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: 'white', padding: 0 },
@@ -137,19 +180,22 @@ const styles = StyleSheet.create({
   nahoreVelky2: { color: "#FF4200", },
   nahoreMalyPodVelkym: { top: "14.5%", alignSelf: "center", textAlign: "center", position: "absolute", fontSize: 15, color: "gray", fontWeight: 200 },
 
-  statBox:  { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: 115, top: -110, left: "5%", height: 120, opacity: 0.7, },
-  statBox2: { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: 115, top: -230, left: "35%", height: 120, opacity: 0.7, },
-  statBox3: { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: 115, top: -350, left: "65%", height: 120, opacity: 0.7, },
-  statBox4: { borderColor: "black", borderWidth: 1, backgroundColor: 'whitesmoke', borderRadius: 15, padding: 15, width: "90%", top: -340, left: "5%", height: 80, opacity: 0.7, },
+  statBox:  { borderColor: "black", borderWidth: 1, backgroundColor: 'white', borderRadius: 15, padding: 15, width: 115, top: -110, left: "5%", height: 120, opacity: 0.9, },
+  statBox2: { borderColor: "black", borderWidth: 1, backgroundColor: 'white', borderRadius: 15, padding: 15, width: 115, top: -230, left: "35%", height: 120, opacity: 0.9, },
+  statBox3: { borderColor: "black", borderWidth: 1, backgroundColor: 'white', borderRadius: 15, padding: 15, width: 115, top: -350, left: "65%", height: 120, opacity: 0.9, },
+  statBox4: { borderColor: "black", borderWidth: 1, backgroundColor: 'white', borderRadius: 15, padding: 15, width: "90%", top: -340, alignSelf: "center", height: 80, opacity: 0.9, },
 
-  statTitle: { color: 'black', fontSize: 14, fontWeight: 'bold' },
-  stat: { color: 'black', fontSize: 18, fontWeight: 'bold' },
+  statTitle: { color: '#FF4200', fontSize: 30, fontWeight: 'bold', textAlign: "center", marginTop: 5 },
+  stat: { color: 'black', fontSize: 18, fontWeight: 'bold', marginTop: 25, textAlign: "center"},
+  stat2: { color: 'black', fontSize: 22, fontWeight: 'bold', marginTop: 10, marginLeft: 10},
+
   buttonsContainer: { flexDirection: 'row', justifyContent: 'space-around', marginTop: 20 },
   button: { paddingVertical: 15, paddingHorizontal: 50, borderRadius: 20, alignItems: 'center' },
   
-  startButton: { backgroundColor: 'green', top: -430, left: "22.5%", height: 60, width: 150, },
-  stopButton: { backgroundColor: 'red', top: -430, left: "22.5%", height: 60, width: 150, },
-  pauseButton: { backgroundColor: 'orange', top: -430, left: "22.5%", height: 60, width: 150, },
-  unpauseButton: { backgroundColor: '#ffcc66', top: -430, left: "22.5%", height: 60, width: 150, },
+  startButton:{ top: -435, left: "25%" },
+  stopButton: { top: -435, left: "35%" },
+  pauseButton: { top: -435, left: "5%" },
+  unpauseButton: { top: -435, left: "5%" },
+
   buttonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
 });
