@@ -1,24 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import { Link, useRouter } from 'expo-router';
-
+import { Linking, Alert } from 'react-native';
 
 // icons
 import Feather from '@expo/vector-icons/Feather';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+
 
 export default function HomeScreen() {
   
 
+  const callEmergency = async () => {
+    const url = 'tel:721020161';
+  
+    const supported = await Linking.canOpenURL(url);
+    
+  
+    if (supported) {
+      await Linking.openURL(url); // Zavolá číslo
+    } else {
+      Alert.alert('Chyba', 'Toto zařízení nepodporuje volání');
+    }
+  };
 
 
   return (
     <View>
       
-      <Link style={styles.homepageIconTopSettings} href="./nastaveni">
-        <Feather name="settings" style={styles.homepageIconTopSettings} />
-      </Link>
+      <TouchableOpacity onPress={callEmergency}>
+        <MaterialCommunityIcons name="car-emergency" style={styles.homepageIconTopSettings} />
+      </TouchableOpacity>
 
       <Text style={styles.homepageMainText}>Become Healty & Stay Resilient.</Text>
 
@@ -65,9 +79,9 @@ const styles = StyleSheet.create({
 
   homepageIconTopSettings: {
     fontSize: 30,
-    top: 80,
-    color: "black",
-    left: 30,
+    top: 75,
+    color: "red",
+    left: 40,
   },
 
   homepageMainText:{
