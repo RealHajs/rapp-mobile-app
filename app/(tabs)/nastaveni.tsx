@@ -1,3 +1,7 @@
+//SQL COMMANDS
+
+//SELECT * FROM profiles
+
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -83,6 +87,14 @@ export default function Nastaveni() {
     <View style={styles.container}>
       {isLoggedIn ? (
         <>
+
+          <Text style={styles.hlavnitext}>SPRINT<Text style={styles.hlavnitextSecond}>IFY</Text></Text>
+          <Text style={styles.hlavnitext2}>Chase your dreams with every step</Text>
+    
+          {/* <Text style={styles.loginText3}>PROFILE 
+            <Text style={styles.loginTextPodButtonem3}> SETTINGS</Text>
+          </Text> */}
+
           <Text style={styles.label}>Username:</Text>
           <TextInput style={styles.input} value={username} onChangeText={setUsername} />
 
@@ -126,32 +138,44 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 10,
     marginBottom: 15,
+    top: 45,
   },
   label: {
     width: '80%',
     textAlign: 'left',
     fontSize: 16,
     marginBottom: 5,
+    marginTop: 10,
+    top: 40,
   },
   updateButton: {
     backgroundColor: '#007bff',
     padding: 10,
     borderRadius: 10,
     marginBottom: 20,
+    alignSelf: "center",
+    textAlign: "center",
+    top: 100,
+    width: 275,
   },
   updateText: {
     color: 'white',
     fontSize: 18,
+    textAlign: "center",
   },
   logoutButton: {
     backgroundColor: '#FF4200',
     padding: 10,
     borderRadius: 10,
     marginBottom: 20,
+    alignSelf: "center",
+    top: 100,
+    width: 275,
   },
   logoutText: {
     color: 'white',
     fontSize: 18,
+    textAlign: "center",
   },
   loginButton: {
     backgroundColor: '#28a745',
@@ -162,4 +186,47 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
   },
+
+  loginTextPodButtonem3: {
+    color: '#FF4200',
+    fontWeight: 500,
+  },
+
+  hlavnitext: {
+    fontSize: 40,
+    color: '#FF4200',
+    position: 'absolute',
+    top: 150,
+    left: 40,
+    fontWeight: '600',
+    fontFamily: 'RubikWetPaint-Regular',
+    textAlign: 'left',
+  },
+
+
+  hlavnitextSecond: {
+    color: 'black',
+  },
+
+
+  hlavnitext2: {
+    fontSize: 15,
+    color: 'black',
+    position: 'absolute',
+    top: 200,
+    left: 40,
+    fontWeight: '400',
+    fontFamily: 'RubikWetPaint-Regular',
+    textAlign: 'left',
+  },
+
+  loginText3: {
+    color: 'black',
+    fontSize: 30,
+    // left: -45,
+    alignSelf: "center",
+    top: 50,
+  },
+
+
 });

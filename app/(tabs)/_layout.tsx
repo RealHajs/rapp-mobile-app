@@ -88,7 +88,7 @@ export default function TabLayout() {
         options={{
           title: 'Settings',
           tabBarIcon: ({ color, focused }) => (
-            <Entypo name="menu" size={30} top={5} color={"black"} />          
+            <Feather name="settings" size={24} top={5} color={"black"} />          
           ),
         }}
       />

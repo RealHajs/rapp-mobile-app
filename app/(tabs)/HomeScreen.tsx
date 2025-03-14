@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import MapView from 'react-native-maps';
+import { Link, useRouter } from 'expo-router';
 
 
 // icons
@@ -15,7 +16,9 @@ export default function HomeScreen() {
   return (
     <View>
       
-      <Feather name="settings" style={styles.homepageIconTopSettings} />
+      <Link style={styles.homepageIconTopSettings} href="./nastaveni">
+        <Feather name="settings" style={styles.homepageIconTopSettings} />
+      </Link>
 
       <Text style={styles.homepageMainText}>Become Healty & Stay Resilient.</Text>
 
